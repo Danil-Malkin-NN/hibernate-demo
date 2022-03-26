@@ -1,9 +1,9 @@
 package ru.present.hibernatedemo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
+import ru.present.hibernatedemo.entity.abst.AIdEntity;
 
 @Table(name = "cat")
 @Entity

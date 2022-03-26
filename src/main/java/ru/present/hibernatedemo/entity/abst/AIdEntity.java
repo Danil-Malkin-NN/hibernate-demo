@@ -1,4 +1,4 @@
-package ru.present.hibernatedemo.entity;
+package ru.present.hibernatedemo.entity.abst;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
