@@ -1,15 +1,14 @@
 package ru.present.hibernatedemo.entity;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ru.present.hibernatedemo.entity.abst.AIdEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "home")
@@ -20,9 +19,9 @@ public class Home extends AIdEntity {
     @Column(name = "home_name")
     private String name = "";
 
-//    @Column(name = "address_id")
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    //    @Column(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Address address = new Address();
 
 //    @OneToOne(cascade = CascadeType.ALL)
