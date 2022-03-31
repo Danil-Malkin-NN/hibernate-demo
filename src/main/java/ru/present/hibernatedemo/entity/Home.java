@@ -25,8 +25,12 @@ public class Home extends AIdEntity {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address = new Address();
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @PrimaryKeyJoinColumn
-//    private Cat cat = new Cat();
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+        name="home_person",
+        joinColumns=@JoinColumn(name="home_id"),
+        inverseJoinColumns=@JoinColumn(name="person_id")
+    )
+    private List<Person> personList = new ArrayList<>();
 
 }

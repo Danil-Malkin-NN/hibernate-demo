@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class AddressDto implements Serializable {
+public class AddressDto extends AIdDto {
 
     private String city = "";
 
