@@ -14,7 +14,7 @@ public class City extends AIdEntity {
 
     private String name = "";
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "home_id")
     private Home home;
 }
