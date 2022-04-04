@@ -20,7 +20,6 @@ public class Home extends AIdEntity {
     @Column(name = "home_name")
     private String name = "";
 
-//    @Column(name = "address_id")
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address = new Address();
@@ -32,5 +31,9 @@ public class Home extends AIdEntity {
         inverseJoinColumns=@JoinColumn(name="person_id")
     )
     private List<Person> personList = new ArrayList<>();
+
+    @JoinColumn(name = "home_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Cat> catList = new ArrayList<>();
 
 }
