@@ -1,15 +1,20 @@
 package ru.present.hibernatedemo.entity;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ru.present.hibernatedemo.entity.abst.AIdEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "home")
@@ -26,14 +31,18 @@ public class Home extends AIdEntity {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-        name="home_person",
-        joinColumns=@JoinColumn(name="home_id"),
-        inverseJoinColumns=@JoinColumn(name="person_id")
+        name = "home_person",
+        joinColumns = @JoinColumn(name = "home_id"),
+        inverseJoinColumns = @JoinColumn(name = "person_id")
     )
     private List<Person> personList = new ArrayList<>();
 
     @JoinColumn(name = "home_id", referencedColumnName = "id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Cat> catList = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "home_id", referencedColumnName = "id")
+    private City city;
 
 }
