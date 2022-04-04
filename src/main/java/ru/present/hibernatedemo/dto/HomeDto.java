@@ -17,4 +17,6 @@ public class HomeDto extends AIdDto {
 
     private List<Cat> catList = new ArrayList<>();
 
+    private CityDto city = new CityDto();
+
 }

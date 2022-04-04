@@ -43,6 +43,6 @@ public class Home extends AIdEntity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "home_id", referencedColumnName = "id")
-    private City city;
+    private City city = new City();
 
 }
