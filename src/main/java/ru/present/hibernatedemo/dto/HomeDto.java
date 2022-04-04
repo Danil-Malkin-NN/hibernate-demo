@@ -14,6 +14,6 @@ public class HomeDto extends AIdDto {
 
     private AddressDto address = new AddressDto();
 
-    private List<Person> personList = new ArrayList<>();
+    private List<PersonDto> personList = new ArrayList<>();
 
 }

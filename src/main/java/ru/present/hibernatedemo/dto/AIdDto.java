@@ -9,11 +9,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@MappedSuperclass
 public abstract class AIdDto implements Serializable {
 
-    @Id
-    @GeneratedValue
     protected Long id;
 
 }
