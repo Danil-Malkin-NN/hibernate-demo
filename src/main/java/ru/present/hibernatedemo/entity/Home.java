@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -25,11 +26,21 @@ public class Home extends AIdEntity {
     @Column(name = "home_name")
     private String name = "";
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address = new Address();
+    //    @OneToOne(cascade = CascadeType.PERSIST)
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL,
+        targetEntity = Address.class,
+        orphanRemoval = true,
+        optional = false)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    @ManyToMany(
+        cascade = CascadeType.PERSIST,
+        targetEntity = Person.class,
+        fetch = FetchType.EAGER
+//        mapedBy = не используется тут
+    )
     @JoinTable(
         name = "home_person",
         joinColumns = @JoinColumn(name = "home_id"),
