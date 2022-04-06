@@ -53,23 +53,16 @@ public class Home extends AIdEntity {
     )
     private List<Person> personList = new ArrayList<>();
 
-    //    @JoinColumn(name = "home_id", referencedColumnName = "id")
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "home")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "home", orphanRemoval = true)
     private List<Cat> catList = new ArrayList<>();
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city = new City();
 
-    public List<Cat> getCatList() {
-        return catList;
-    }
-
     public void setCatList(List<Cat> catList) {
         catList.forEach(cat -> cat.setHome(this));
         this.catList = catList;
-
     }
 
 }

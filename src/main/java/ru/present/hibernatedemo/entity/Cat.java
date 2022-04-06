@@ -17,7 +17,7 @@ public class Cat extends AIdEntity {
     String name = "";
 
     @ManyToOne
-    @JoinColumn(name = "home_id", referencedColumnName = "id")
+    @JoinColumn(name = "home_id", referencedColumnName = "id", nullable = false)
     private Home home;
 
 }
