@@ -13,23 +13,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.present.hibernatedemo.entity.abst.AIdEntity;
 
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "home")
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Home extends AIdEntity {
 
     @Column(name = "home_name")
     private String name = "";
 
     //    @OneToOne(cascade = CascadeType.PERSIST)
-
     @OneToOne(cascade = CascadeType.ALL,
-        targetEntity = Address.class,
+        targetEntity = Address.class,//Параметр не обязателен.
         orphanRemoval = true,
         optional = false)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -39,7 +45,6 @@ public class Home extends AIdEntity {
         cascade = CascadeType.PERSIST,
         targetEntity = Person.class,
         fetch = FetchType.EAGER
-//        mapedBy = не используется тут
     )
     @JoinTable(
         name = "home_person",
@@ -48,12 +53,23 @@ public class Home extends AIdEntity {
     )
     private List<Person> personList = new ArrayList<>();
 
-    @JoinColumn(name = "home_id", referencedColumnName = "id")
-    @OneToMany(cascade = CascadeType.ALL)
+    //    @JoinColumn(name = "home_id", referencedColumnName = "id")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "home")
     private List<Cat> catList = new ArrayList<>();
-
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "home_id", referencedColumnName = "id")
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city = new City();
+
+    public List<Cat> getCatList() {
+        return catList;
+    }
+
+    public void setCatList(List<Cat> catList) {
+        catList.forEach(cat -> cat.setHome(this));
+        this.catList = catList;
+
+    }
 
 }
