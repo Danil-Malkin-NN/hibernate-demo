@@ -19,4 +19,6 @@ public class HomeDto extends AIdDto {
 
     private CityDto city = new CityDto();
 
+    private List<Integer> list = new ArrayList<>();
+
 }

@@ -6,8 +6,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import ru.present.hibernatedemo.entity.abst.AIdEntity;
 
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "cat")
 @Entity
 @Data
