@@ -11,5 +11,4 @@ public class CityDto extends AIdDto {
 
     private String name = "";
 
-    private Home home;
 }

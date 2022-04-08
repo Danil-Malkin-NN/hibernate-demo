@@ -20,4 +20,8 @@ public class HomeService {
     public Home findById(Long id) {
         return homeRepository.getById(id);
     }
+
+    public void delete(Long id) {
+        homeRepository.deleteById(id);
+    }
 }
