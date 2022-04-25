@@ -20,6 +20,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import ru.present.hibernatedemo.entity.abst.AIdEntity;
 
 @EqualsAndHashCode(callSuper = true)
@@ -56,6 +58,7 @@ public class Home extends AIdEntity {
 
     @JoinColumn(name = "home_id", referencedColumnName = "id")
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Cat> catList = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -64,6 +67,7 @@ public class Home extends AIdEntity {
 
     @ElementCollection
     @CollectionTable(name = "number_table")
+    @Fetch(FetchMode.SUBSELECT)
     private List<Integer> list = new ArrayList<>();
 
 }

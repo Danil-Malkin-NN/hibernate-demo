@@ -29,5 +29,4 @@ public class Address extends AIdEntity {
     @OneToOne(mappedBy = "address")
     private Home home;
 
-
 }

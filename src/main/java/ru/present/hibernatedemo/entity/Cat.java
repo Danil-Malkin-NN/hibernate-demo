@@ -2,6 +2,7 @@ package ru.present.hibernatedemo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ public class Cat extends AIdEntity {
     String name = "";
 
     @JoinColumn(name = "home_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Home home;
 
 }
